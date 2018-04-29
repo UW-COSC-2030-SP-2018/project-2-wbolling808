@@ -26,13 +26,15 @@ void QuickSortImpl(FwdIt first, FwdIt last, Compare cmp = Compare{})
 }
 
 //quick sort recursion
-void QuickSort(vector<double>& vec1)
+void QuickSort(vector<int>& vec1)
 {
 	QuickSortImpl(vec1.begin(), vec1.end());
 }
 //Binary search  Nathan epstein 
 //https://gist.github.com/NathanEpstein/9f5872c6452ba15cde9d
 //get the index of a target integer from a sorted vector
+
+
 int binSearch(const vector<int>& sorted, const int target) {
 	const int mid = floor(sorted.size() / 2);
 
@@ -50,18 +52,18 @@ int binSearch(const vector<int>& sorted, const int target) {
 		const vector<int> right(sorted.begin() + mid, sorted.end());
 		return (mid + binSearch(right, target));
 	}
-}
+}// end of binarysearch
 
 
 //Merge & Merge Sort Nathan epstein 
 //https://gist.github.com/NathanEpstein/9f5872c6452ba15cde9d
 //MERGE SORT IMPLEMENTATION
 // merge function
-vector<double> merge(vector<double> left, vector<double> right) {
+vector<int> merge(vector<int> left, vector<int> right) {
 	int leftCount = 0;
 	int rightCount = 0;
 
-	vector<double> results;
+	vector<int> results;
 
 	bool useLeft;
 	for (int i = 0; i<left.size() + right.size(); i++) {
@@ -94,13 +96,13 @@ vector<double> merge(vector<double> left, vector<double> right) {
 }
 
 // merge sort function
-vector<double> mergeSort(vector<double> arr) {
+vector<int> mergeSort(vector<int> arr) {
 	if (arr.size() <= 1) {
 		return arr;
 	}
 	int len = floor(arr.size() / 2);
-	vector<double> left(arr.begin(), arr.begin() + len);
-	vector<double> right(arr.begin() + len, arr.end());
+	vector<int> left(arr.begin(), arr.begin() + len);
+	vector<int> right(arr.begin() + len, arr.end());
 
 	return merge(mergeSort(left), mergeSort(right));
-}
+}//emd of merge sort
