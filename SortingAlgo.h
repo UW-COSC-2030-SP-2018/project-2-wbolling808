@@ -1,5 +1,9 @@
 #pragma once
 //William Bollinger Project 2 sort algorithms
+#ifndef SortingAlgo_H
+#define SortingAlgo_H
+
+
 #include<vector>
 #include<algorithm>
 #include<iostream>
@@ -35,24 +39,36 @@ void QuickSort(vector<int>& vec1)
 //get the index of a target integer from a sorted vector
 
 
-int binSearch(const vector<int>& sorted, const int target) {
-	const int mid = floor(sorted.size() / 2);
-
-	if (sorted[mid] == target) {
-		//return if it matches
-		return mid;
+//int binSearch(const vector<int>& sorted, const int target) {
+//	const int mid = (sorted.size() / 2);
+//
+//	if (sorted[mid] == target) {
+//		//return if it matches
+//		return mid;
+//	}
+//	else if (sorted[mid] > target) {
+//		//search left
+//		const vector<int> left(sorted.begin(), sorted.begin() + mid);
+//		return binSearch(left, target);
+//	}
+//	else {
+//		//search right
+//		const vector<int> right(sorted.begin() + mid, sorted.end());
+//		return (mid + binSearch(right, target));
+//	}
+//either returns val or -1
+int binSearch(vector<int> input, int key, int left, int right)
+{
+	if (right >= left)
+	{
+		int middle = (left + right) / 2;
+		if (input[middle] == key) return middle;
+		if (input[middle] > key) return binSearch(input, key, left, middle - 1);
+		return binSearch(input, key, middle + 1, right);
 	}
-	else if (sorted[mid] > target) {
-		//search left
-		const vector<int> left(sorted.begin(), sorted.begin() + mid);
-		return binSearch(left, target);
-	}
-	else {
-		//search right
-		const vector<int> right(sorted.begin() + mid, sorted.end());
-		return (mid + binSearch(right, target));
-	}
-}// end of binarysearch
+	return -1;
+}
+// end of binarysearch
 
 
 //Merge & Merge Sort Nathan epstein 
@@ -106,3 +122,4 @@ vector<int> mergeSort(vector<int> arr) {
 
 	return merge(mergeSort(left), mergeSort(right));
 }//emd of merge sort
+#endif // !SortingAlgo_H

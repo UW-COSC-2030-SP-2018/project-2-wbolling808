@@ -32,9 +32,46 @@ void print(const vector<int>& invec)
 int main() {
 	vector<int> temp;
 	vector<int> tempHashed;
+	bool sorted = false;
+	bool found = false;
+	vector<int> checkVal = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 };
+	vector<int> inputTest = { 15,12,13,11,9,10,7,8,14,6,5,3,4,2,1 };
+	vector<int> inputTest2 = { 15,12,13,11,9,10,7,8,14,6,5,3,4,2,1 };
 	int vectorSize;
 	int minVal;
 	int maxVal;
+	// Testing QuickSort and Binsearch
+	QuickSort(inputTest);
+	if (inputTest == checkVal) {
+		sorted = true;
+		cout << "Quick sort is funtional : " << sorted<<"\n";
+	}
+	else {
+		cout << "Quick sort is not funtional: " << sorted<<"\n";
+	}
+	int tempVal = binSearch(inputTest, 12, 0 , (inputTest.size()-1));
+	if (tempVal == 12) {
+		found == true;
+		cout << "binSearch can find: " << found<<"\n";
+	}
+	else {
+		cout << "binSearch can't find: " << found<<"\n";
+	}
+	//making sure sorted is set to false at the start of next test
+	sorted = false;
+	//Testing mergeSort
+	mergeSort(inputTest2);
+	if (inputTest2 == checkVal) {
+		sorted = true;
+		cout << "Merge sort is funtional: " << sorted<<"\n";
+	}
+	else {
+		cout << "Merge sort is not funtional: " << sorted<<"\n";
+	}
+	//end of tests
+
+	//Vectors of different sizes and with random numbers for testing. 
+
 	cout << "Enter the desired size of the vector: ";
 	cin >> vectorSize;
 	if (cin.fail()) {
@@ -57,6 +94,9 @@ int main() {
 			cout << "it would seem your min is larger than your max, lets try again. \n"; 
 		}
 	} while (minVal > maxVal); 
+
+
+
 	temp = getNums(vectorSize, minVal, maxVal);
 	QuickSort(temp);
 	for (int i = 0; i < vectorSize; i++) {
