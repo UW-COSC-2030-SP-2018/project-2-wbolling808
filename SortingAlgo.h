@@ -56,17 +56,17 @@ void QuickSort(vector<int>& vec1)
 //		const vector<int> right(sorted.begin() + mid, sorted.end());
 //		return (mid + binSearch(right, target));
 //	}
-//either returns val or -1
-int binSearch(vector<int> input, int key, int left, int right)
-{
-	if (right >= left)
-	{
-		int middle = (left + right) / 2;
-		if (input[middle] == key) return middle;
-		if (input[middle] > key) return binSearch(input, key, left, middle - 1);
-		return binSearch(input, key, middle + 1, right);
+template<typename T>
+void BinSearch(vector<T>& vec1, T val) {
+	QuickSort(vec1);
+	int upper = size(vec1) - 1;
+	bool result = BinSearch(vec1, 0, upper, val);
+	if (result) {
+		cout << val << " was found!" << endl;
 	}
-	return -1;
+	else {
+		cout << val << " was not found!" << endl;
+	}
 }
 // end of binarysearch
 
