@@ -4,6 +4,7 @@
 #include<iostream>
 using std::cout;
 using std::endl;
+//Found a lot of this code scattered around the internet and am attempting to pull it together. 
 
 // constructor for bloomfilter, sets table to all zeros
 BloomFilter::BloomFilter() {}
@@ -29,7 +30,7 @@ void BloomFilter::insert(string s)
 	}
 	table[hash1] = 1;
 
-	// SDBMHash from lab10 found in GeneralHashFunctions.cpp
+	// SDBMHash 
 	unsigned int hash2 = 0;
 	for (std::size_t i = 0; i < s.length(); i++)
 	{
@@ -49,15 +50,14 @@ bool BloomFilter::contains(string s) const
 	}
 
 
-	// JSHash from lab10 found in GeneralHashFunctions.cpp
+	// JSHash 
 	unsigned int hash1 = 1315423911 % TABLE_SIZE;
 	for (std::size_t i = 0; i < s.length(); i++)
 	{
 		hash1 ^= ((hash1 << 5) + s[i] + (hash1 >> 2)) % TABLE_SIZE;
 	}
 
-	// SDBMHash from lab10 found in GeneralHashFunctions.cpp
-	// added the mod so it would fit in the table
+	// SDBMHash
 	unsigned int hash2 = 0;
 	for (std::size_t i = 0; i < s.length(); i++)
 	{
@@ -69,7 +69,7 @@ bool BloomFilter::contains(string s) const
 	return found;
 }
 
-// prints out the table if it is not zero
+//iterates through entire table and prints out the table if element is not zero
 void BloomFilter::printTable()
 {
 	for (int i = 0; i < TABLE_SIZE; i++)
