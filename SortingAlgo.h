@@ -39,12 +39,17 @@ void QuickSort(vector<int>& vec1)
 //get the index of a target integer from a sorted vector
 
 
-int binSearch(const vector<int>& sorted, const int target) {
+int binSearch(const vector<int>& sorted, int target) {
 	const int mid = (sorted.size() / 2);
-
+	if (sorted.size() == 0) {
+		return -1;
+	}
 	if (sorted[mid] == target) {
 		//return if it matches
 		return mid;
+	}
+	if (sorted.size() == 1) {
+		return -1;
 	}
 	else if (sorted[mid] > target) {
 		//search left
@@ -57,6 +62,7 @@ int binSearch(const vector<int>& sorted, const int target) {
 		return (mid + binSearch(right, target));
 	}
 }
+
 // end of binarysearch
 
 

@@ -49,13 +49,13 @@ int main() {
 	else {
 		cout << "Quick sort is not funtional: " << sorted<<"\n";
 	}
-	int tempVal = binSearch(checkVal, 12);
-	if (tempVal == 12) {
+	int indexVal = binSearch(inputTest, 12);
+	if (checkVal[indexVal] == 12) {
 		found == true;
-		cout << "binSearch can find 12: " << tempVal<<"\n";
+		cout << "binSearch can find 12 at index: " << indexVal<<"\n";
 	}
 	else {
-		cout << "binSearch can't find 12 : " << tempVal<<"\n";
+		cout << "binSearch can't find 12; lost at index : " << indexVal<<"\n";
 	}
 	//making sure sorted is set to false at the start of next test
 	sorted = false;
