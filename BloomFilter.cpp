@@ -5,7 +5,8 @@
 using std::cout;
 using std::endl;
 //Found a lot of this code scattered around the internet and am attempting to pull it together. 
-
+//https://github.com/adobe/chromium/blob/master/chrome/browser/safe_browsing/bloom_filter.cc
+//also read a lot about bloom filters on wikipedia and runestoneacademy
 // constructor for bloomfilter, sets table to all zeros
 BloomFilter::BloomFilter() {}
 
