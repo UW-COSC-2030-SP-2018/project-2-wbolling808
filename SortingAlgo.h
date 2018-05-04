@@ -5,14 +5,14 @@
 
 
 #include<vector>
-#include<algorithm>
 #include<iostream>
 
 using std::vector;
 using std::cin;
 using std::cout;
 using std::endl;
-//Quick Sort pulled from lab07
+
+//Quick Sort pulled from lab07 because it is beautiful
 template<class FwdIt, class Compare = std::less<>>
 void QuickSortImpl(FwdIt first, FwdIt last, Compare cmp = Compare{})
 {
@@ -39,33 +39,22 @@ void QuickSort(vector<int>& vec1)
 //get the index of a target integer from a sorted vector
 
 
-//int binSearch(const vector<int>& sorted, const int target) {
-//	const int mid = (sorted.size() / 2);
-//
-//	if (sorted[mid] == target) {
-//		//return if it matches
-//		return mid;
-//	}
-//	else if (sorted[mid] > target) {
-//		//search left
-//		const vector<int> left(sorted.begin(), sorted.begin() + mid);
-//		return binSearch(left, target);
-//	}
-//	else {
-//		//search right
-//		const vector<int> right(sorted.begin() + mid, sorted.end());
-//		return (mid + binSearch(right, target));
-//	}
-template<typename T>
-void BinSearch(vector<T>& vec1, T val) {
-	QuickSort(vec1);
-	int upper = size(vec1) - 1;
-	bool result = BinSearch(vec1, 0, upper, val);
-	if (result) {
-		cout << val << " was found!" << endl;
+int binSearch(const vector<int>& sorted, const int target) {
+	const int mid = (sorted.size() / 2);
+
+	if (sorted[mid] == target) {
+		//return if it matches
+		return mid;
+	}
+	else if (sorted[mid] > target) {
+		//search left
+		const vector<int> left(sorted.begin(), sorted.begin() + mid);
+		return binSearch(left, target);
 	}
 	else {
-		cout << val << " was not found!" << endl;
+		//search right
+		const vector<int> right(sorted.begin() + mid, sorted.end());
+		return (mid + binSearch(right, target));
 	}
 }
 // end of binarysearch
@@ -75,8 +64,8 @@ void BinSearch(vector<T>& vec1, T val) {
 //https://gist.github.com/NathanEpstein/9f5872c6452ba15cde9d
 //MERGE SORT IMPLEMENTATION
 // merge function
-vector<int> merge(vector<int> left, vector<int> right) {
-	int leftCount = 0;
+//vector<int> merge(vector<int> left, vector<int> right) {
+	/*int leftCount = 0;
 	int rightCount = 0;
 
 	vector<int> results;
@@ -108,7 +97,23 @@ vector<int> merge(vector<int> left, vector<int> right) {
 			}
 		}
 	}
-	return results;
+	return results;*/
+	vector<int> merge(vector<int> left, vector<int> right) {
+		size_t ileft = 0, iright = 0;
+		vector<int> results;
+		while (ileft < left.size() && iright < right.size()) {
+			if (left[ileft] < right[iright])
+				results.push_back(left[ileft++]);
+			else
+				results.push_back(right[iright++]);
+			while (ileft < left.size()) {
+				results.push_back(left[ileft++]); 
+			}
+			while (iright < right.size()) {
+				results.push_back(right[iright++]);
+			}
+			return results;
+		}
 }
 
 // merge sort function
@@ -116,7 +121,7 @@ vector<int> mergeSort(vector<int> arr) {
 	if (arr.size() <= 1) {
 		return arr;
 	}
-	int len = floor(arr.size() / 2);
+	int len = (arr.size() / 2);
 	vector<int> left(arr.begin(), arr.begin() + len);
 	vector<int> right(arr.begin() + len, arr.end());
 
